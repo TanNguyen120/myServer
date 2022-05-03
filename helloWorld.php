@@ -1,16 +1,3 @@
-<?php 
-    function cuuChuong($n){
-        echo "<h3> bảng cửu chương ${n} </h3>";
-        for($i = 0; $i < 10;$i++)
-        {
-            $result = $i * $n;
-            echo $i . " x " . $n . " = " . $result . "<br>"; 
-        }
-    }
-    cuuChuong($_GET['number']);
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +9,31 @@
     </head>
 
     <body>
-        <a href="http://localhost/myServer/helloWorld.php?number=4">Xem bảng cửu chương 4 tại đây</a>
+        <?php 
+            function cuuChuong($n){
+                echo "<h3> bảng cửu chương ${n} </h3>";
+                for($i = 0; $i < 10;$i++)
+                {
+                    $result = $i * $n;
+                    echo $i . " x " . $n . " = " . $result . "<br>"; 
+                }
+            }
+            
+        ?>
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <input type="text" name="number" placeholder="Nhập số cửu chương">
+            <input type="submit" value="tính" , name="submit">
+            <!-- <label for="number"> Nhập số bạn muốn xem cửu chương: </label>
+            <input type="text" name="number" id="number"> -->
+        </form>
+        <?php
+            if(isset( $_POST['submit']) ){
+                $n = $_POST['number'];
+                echo "<h3> Bảng cửu chương ${n} </h3>";
+
+                cuuChuong($n);
+            }
+        ?>
     </body>
 
 </html>
